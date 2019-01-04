@@ -1,0 +1,9 @@
+export const BASE_URL = 'https://api.themoviedb.org/3';
+export const POPULAR_MOVIES = '/movie/popular';
+export const MOVIE = '/movie/{movie_id}';
+export const RECOMENDATIONS = '/movie/{movie_id}/recommendations';
+export const SEARCH = '/search/movie';
+export const SIMILAR_MOVIES = '/movie/{movie_id}/similar';
+export const GENRES = '/genre/movie/list';
+export const BASE_IMAGE_URL = 'http://image.tmdb.org/t/p';
+export const API_KEY = 'dbc0a6d62448554c27b6167ef7dabb1b';
