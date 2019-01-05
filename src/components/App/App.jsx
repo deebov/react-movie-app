@@ -21,7 +21,12 @@ class App extends Component {
         <Search />
         <Switch>
           <Route path={LANDING} exact component={LandingPage} />
-          <Route path={MOVIE} component={MoviePage} />
+          <Route
+            path={MOVIE}
+            render={props => (
+              <MoviePage key={props.match.params.movieId} {...props} />
+            )}
+          />
           <Route render={() => <Redirect to={LANDING} />} />
         </Switch>
       </div>

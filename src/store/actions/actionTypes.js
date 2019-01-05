@@ -22,6 +22,14 @@ export const MOVIE_SUCCESS = 'MOVIE_SUCCESS';
 
 /** MOVIE [END] */
 
+/** SIMILAR MOVIES [START] */
+
+export const SIMILAR_START = 'SIMILAR_START';
+export const SIMILAR_FAIL = 'SIMILAR_FAIL';
+export const SIMILAR_SUCCESS = 'SIMILAR_SUCCESS';
+
+/** SIMILAR MOVIES [END] */
+
 /** SEARCH [START] */
 
 export const SEARCH_START = 'SEARCH_START';

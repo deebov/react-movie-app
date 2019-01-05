@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
 import Movie from '../containers/Movie/Movie';
+import SimilarMovies from '../containers/SimilarMovies/SimilarMovies';
 
 const MoviePage = props => {
   return (
@@ -11,6 +12,7 @@ const MoviePage = props => {
         <title>{props.movie ? props.movie.title : null}</title>
       </Helmet>
       <Movie id={props.match.params.movieId} />
+      <SimilarMovies id={props.match.params.movieId} />
     </div>
   );
 };

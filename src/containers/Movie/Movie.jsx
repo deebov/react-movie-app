@@ -13,7 +13,11 @@ class Movie extends Component {
   render() {
     let movie = null;
     if (this.props.loading) {
-      movie = <Spinner />;
+      movie = (
+        <div style={{ paddingTop: '60px' }}>
+          <Spinner />
+        </div>
+      );
     } else if (this.props.movie) {
       movie = <MoviePresentational movie={this.props.movie} />;
     }
