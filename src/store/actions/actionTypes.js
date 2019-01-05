@@ -13,3 +13,11 @@ export const GENRES_FAIL = 'GENRES_FAIL';
 export const GENRES_SUCCESS = 'GENRES_SUCCESS';
 
 /** GENRES [END] */
+
+/** MOVIE [START] */
+
+export const MOVIE_START = 'MOVIE_START';
+export const MOVIE_FAIL = 'MOVIE_FAIL';
+export const MOVIE_SUCCESS = 'MOVIE_SUCCESS';
+
+/** MOVIE [END] */

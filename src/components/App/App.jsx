@@ -4,8 +4,9 @@ import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import Helmet from 'react-helmet';
 
 import LandingPage from '../../pages/LandingPage';
-import { LANDING } from '../../constants/routes';
+import { LANDING, MOVIE } from '../../constants/routes';
 import { fetchGenres } from '../../store/actions';
+import MoviePage from '../../pages/MoviePage';
 
 class App extends Component {
   componentDidMount() {
@@ -18,12 +19,19 @@ class App extends Component {
         <Helmet titleTemplate="%s | Movies App" />
         <Switch>
           <Route path={LANDING} exact component={LandingPage} />
+          <Route path={MOVIE} component={MoviePage} />
           <Route render={() => <Redirect to={LANDING} />} />
         </Switch>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    movie: state.movie.movie
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -33,7 +41,7 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(App)
 );
