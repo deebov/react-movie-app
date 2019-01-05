@@ -1,4 +1,4 @@
-import * as actionTypes from './actionsTypes';
+import * as actionTypes from './actionTypes';
 import axios from '../../utils/axios';
 import { POPULAR_MOVIES } from '../../constants/api';
 

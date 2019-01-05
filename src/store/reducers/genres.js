@@ -2,27 +2,18 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../utils';
 
 const initialState = {
-  movies: null,
+  genres: null,
   loading: false
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.POPULAR_START:
+    case actionTypes.GENRES_START:
       return updateObject(state, { loading: true });
-    case actionTypes.POPULAR_FAIL:
+    case actionTypes.GENRES_FAIL:
       return updateObject(state, { loading: false });
-    case actionTypes.POPULAR_SUCCESS:
-      const { results, page, total_results, total_pages } = action.data;
-      return updateObject(state, {
-        movies: results,
-        popularInfo: {
-          page,
-          total_pages,
-          total_results
-        },
-        loading: false
-      });
+    case actionTypes.GENRES_SUCCESS:
+      return updateObject(state, { genres: action.genres, loading: false });
     default:
       return state;
   }

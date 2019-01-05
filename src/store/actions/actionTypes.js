@@ -5,3 +5,11 @@ export const POPULAR_FAIL = 'POPULAR_FAIL';
 export const POPULAR_SUCCESS = 'POPULAR_SUCCESS';
 
 /** POPULAR MOVIES [END] */
+
+/** GENRES [START] */
+
+export const GENRES_START = 'GENRES_START';
+export const GENRES_FAIL = 'GENRES_FAIL';
+export const GENRES_SUCCESS = 'GENRES_SUCCESS';
+
+/** GENRES [END] */
