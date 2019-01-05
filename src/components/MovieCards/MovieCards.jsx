@@ -7,7 +7,7 @@ import classes from './MovieCards.module.css';
 import { MOVIE } from '../../constants/routes';
 import Spinner from '../Spinner/Spinner';
 
-const MovieCards = ({ movies, page, onPaginatedSearch, loading }) => {
+const MovieCards = ({ movies }) => {
   let cards = <Spinner />;
 
   if (movies) {
@@ -21,18 +21,6 @@ const MovieCards = ({ movies, page, onPaginatedSearch, loading }) => {
   return (
     <div className={classes.Container}>
       <div className={classes.ContainerInner}>{cards}</div>
-      <div className={classes.ButtonBox}>
-        {page && !loading && (
-          <button
-            className={classes.Button}
-            type="button"
-            onClick={onPaginatedSearch}
-          >
-            More
-          </button>
-        )}
-        {loading && <Spinner />}
-      </div>
     </div>
   );
 };

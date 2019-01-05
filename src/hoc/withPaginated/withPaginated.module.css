@@ -1,0 +1,18 @@
+.ButtonBox {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.Button {
+  border: none;
+  cursor: pointer;
+  background-color: #ccc;
+  padding: 5px 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.Button:hover {
+  background-color: #bbb;
+}

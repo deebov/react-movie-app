@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { fetchPopular } from '../../store/actions';
 import MovieCards from '../../components/MovieCards/MovieCards';
 import { addGenres } from '../../utils';
+import withPaginated from '../../hoc/withPaginated/withPaginated';
 
 class PopularMovies extends Component {
   state = {
@@ -33,7 +34,7 @@ class PopularMovies extends Component {
   render() {
     return (
       <div>
-        <MovieCards
+        <MovieCardsWithPaginated
           movies={this.state.movies}
           page={this.state.page}
           loading={this.props.loading}
@@ -43,6 +44,8 @@ class PopularMovies extends Component {
     );
   }
 }
+
+const MovieCardsWithPaginated = withPaginated(MovieCards);
 
 PopularMovies.propTypes = {
   popular: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
