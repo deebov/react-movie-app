@@ -7,6 +7,7 @@ import LandingPage from '../../pages/LandingPage';
 import { LANDING, MOVIE } from '../../constants/routes';
 import { fetchGenres } from '../../store/actions';
 import MoviePage from '../../pages/MoviePage';
+import Search from '../../containers/Search/Search';
 
 class App extends Component {
   componentDidMount() {
@@ -17,6 +18,7 @@ class App extends Component {
     return (
       <div>
         <Helmet titleTemplate="%s | Movies App" />
+        <Search />
         <Switch>
           <Route path={LANDING} exact component={LandingPage} />
           <Route path={MOVIE} component={MoviePage} />
