@@ -21,18 +21,23 @@ export const fetchPopularSuccess = data => {
   };
 };
 
-export const fetchPopular = () => async (dispatch, getState) => {
-  if (getState().popular.loading || getState().popular.movies) {
+export const fetchPopular = (page = 1) => async (dispatch, getState) => {
+  if (
+    getState().popular.loading ||
+    getState().popular.popularInfo.page > page
+  ) {
     return;
   }
 
   dispatch(fetchPopularStart());
 
   try {
-    const data = await axios(POPULAR_MOVIES);
+    const data = await axios(POPULAR_MOVIES, { params: { page } });
 
     dispatch(fetchPopularSuccess(data.data));
   } catch (error) {
+    console.log(error);
+
     dispatch(fetchPopularFail());
   }
 };

@@ -3,6 +3,7 @@ import { updateObject } from '../../utils';
 
 const initialState = {
   movies: null,
+  popularInfo: {},
   loading: false
 };
 
@@ -14,10 +15,11 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, { loading: false });
     case actionTypes.POPULAR_SUCCESS:
       const { results, page, total_results, total_pages } = action.data;
+      const oldMovies = state.movies ? state.movies : [];
       return updateObject(state, {
-        movies: results,
+        movies: [...oldMovies, ...results],
         popularInfo: {
-          page,
+          page: page === total_pages ? null : page,
           total_pages,
           total_results
         },

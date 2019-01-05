@@ -1,10 +1,31 @@
-.Container {
+.ContainerInner {
   display: flex;
-  padding-top: 60px;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.Container > * {
+.Container {
+  padding-bottom: 30px;
+}
+
+.ContainerInner > * {
   margin-bottom: 30px;
+}
+
+.ButtonBox {
+  width: 100%;
+  text-align: center;
+}
+
+.Button {
+  border: none;
+  cursor: pointer;
+  background-color: #ccc;
+  padding: 5px 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+.Button:hover {
+  background-color: #bbb;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import classes from './MovieCard.module.css';
 import { BASE_IMAGE_URL } from '../../../constants/api';
@@ -6,6 +7,7 @@ import { truncStr } from '../../../utils';
 
 const MovieCard = props => {
   const { title, genres, poster_path, vote_average } = props.item;
+  
   const genresString = genres.map(g => g.name).join(' / ');
 
   return (
@@ -25,6 +27,10 @@ const MovieCard = props => {
       </div>
     </div>
   );
+};
+
+MovieCard.propTypes = {
+  item: PropTypes.object.isRequired
 };
 
 export default MovieCard;
