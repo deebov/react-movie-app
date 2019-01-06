@@ -33,6 +33,20 @@ or
 ```sh
 $ npm build
 ```
+
+To serve the app and use it you should instals ```serve```. To install it run this command:
+```sh
+$ yarn global add serve
+```
+or
+```sh
+$ npm i -g serve
+```
+
+Then go the production folder ( ```dist```) and run this command:
+```sh
+$ serve
+```
 ## Features
 
 - Lazy-loading components ( Code-splitting )
