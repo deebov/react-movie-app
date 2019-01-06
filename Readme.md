@@ -55,6 +55,7 @@ $ npm build
 - [React-router](https://github.com/ReactTraining/react-router) - Declarative routing for React
 - [Redux-thunk](https://github.com/reduxjs/redux-thunk) - Thunk middleware for Redux
 - [Hot module replacement](https://webpack.js.org/concepts/hot-module-replacement/) ( [react-hot-loader](https://github.com/gaearon/react-hot-loader) ) - a plugin that allows React components to be live reloaded without the loss of state
+- [Prettier](https://prettier.io/) - code formatter
 
 ## Q&A
 
