@@ -7,11 +7,11 @@ import classes from './MovieCards.module.css';
 import { MOVIE } from '../../constants/routes';
 import Spinner from '../Spinner/Spinner';
 
-const MovieCards = ({ movies }) => {
+const MovieCards = ({ list }) => {
   let cards = <Spinner />;
 
-  if (movies) {
-    cards = movies.map((m, i) => (
+  if (list) {
+    cards = list.map((m, i) => (
       <Link key={i} to={`${MOVIE.replace(/\:movieId/, m.id)}`}>
         <MovieCard item={m} />
       </Link>

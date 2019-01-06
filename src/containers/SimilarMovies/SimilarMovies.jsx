@@ -29,7 +29,7 @@ class SimilarMovies extends Component {
     if (this.props.loading) {
       movieCards = <Spinner />;
     } else if (this.state.movies) {
-      movieCards = <MovieCards movies={this.state.movies.slice(0, 6)} />;
+      movieCards = <MovieCards list={this.state.movies.slice(0, 6)} />;
     }
 
     return (
