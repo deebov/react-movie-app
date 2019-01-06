@@ -14,7 +14,8 @@ const devConfig = env => {
       stats: 'minimal',
       port: 3000,
       host: 'localhost',
-      compress: true
+      compress: true,
+      open: true
     },
     plugins: [new webpack.HotModuleReplacementPlugin()]
   });
