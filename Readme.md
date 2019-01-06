@@ -17,6 +17,7 @@ $ npm install
 ### RUN
 
 In development mode the application is supposed to be used to improve or work on itself.
+
 To run the application in development mode run this command:
 
 ```sh
@@ -32,6 +33,7 @@ $ npm start
 ### BUILD
 
 In production mode the application is optimized and minimized. You can use it for production.
+
 To build the application in production mode run this command:
 
 ```sh
@@ -44,7 +46,7 @@ or
 $ npm build
 ```
 
-To serve the app and use it you should instals `serve`. To install it run this command:
+To serve the app and use it you should install `serve` package. To install it run this command:
 
 ```sh
 $ yarn global add serve
@@ -95,7 +97,7 @@ $ serve
 
 **Why I did not used Typescript and Redux-saga?**
 
-> At the time of writing this application I didn't learned them. But I am going to learn them very soon. They are at the top of my task list.
+> At the time of writing this application I didn't learned them yet. But I am going to learn them very soon. They are at the top of my task list.
 
 **Why I did not write tests?**
 
@@ -104,4 +106,5 @@ $ serve
 ### Contacts
 
 [Github](https://github.com/deebov)
+
 Email: deebov@yandex.com
