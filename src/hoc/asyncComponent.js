@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 const asyncComponent = importComponent => {
   return class lazyComponent extends Component {
     state = {
-      component: null
+      component: null,
     };
 
     componentDidMount() {
@@ -21,4 +21,3 @@ const asyncComponent = importComponent => {
 };
 
 export default asyncComponent;
- 

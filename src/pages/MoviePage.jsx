@@ -19,7 +19,7 @@ const MoviePage = props => {
 
 const mapStateToProps = state => {
   return {
-    movie: state.movie.movie
+    movie: state.movie.movie,
   };
 };
 
