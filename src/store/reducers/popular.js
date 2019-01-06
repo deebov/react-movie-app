@@ -4,7 +4,8 @@ import { updateObject } from '../../utils';
 const initialState = {
   movies: null,
   popularInfo: {},
-  loading: false
+  loading: false,
+  error: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,7 +13,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.POPULAR_START:
       return updateObject(state, { loading: true });
     case actionTypes.POPULAR_FAIL:
-      return updateObject(state, { loading: false });
+      return updateObject(state, { loading: false, error: action.error });
     case actionTypes.POPULAR_SUCCESS:
       const { results, page, total_results, total_pages } = action.data;
       const oldMovies = state.movies ? state.movies : [];

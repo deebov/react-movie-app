@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { compose } from 'recompose';
 
 import { fetchPopular } from '../../store/actions';
 import MovieCards from '../../components/MovieCards/MovieCards';
 import { addGenres } from '../../utils';
-// import withPaginated from '../../hoc/withPaginated/withPaginated';
+import withPaginated from '../../hoc/withPaginated/withPaginated';
 import withInfiniteScroll from '../../hoc/withInfiniteScroll/withInfiniteScroll';
+import withLoading from '../../hoc/withLoading';
 
 class PopularMovies extends Component {
   state = {
@@ -35,10 +37,11 @@ class PopularMovies extends Component {
   render() {
     return (
       <div>
-        <MovieCardsWithInfiniteScroll
+        <AdvancedMovieCards
           list={this.state.movies}
           page={this.state.page}
           loading={this.props.loading}
+          error={this.props.error}
           onPaginatedSearch={this.onPaginatedSearch}
         />
       </div>
@@ -46,7 +49,11 @@ class PopularMovies extends Component {
   }
 }
 
-const MovieCardsWithInfiniteScroll = withInfiniteScroll(MovieCards);
+const AdvancedMovieCards = compose(
+  withPaginated,
+  withInfiniteScroll,
+  withLoading
+)(MovieCards);
 
 PopularMovies.propTypes = {
   popular: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
@@ -60,6 +67,7 @@ const mapStateToProps = state => {
     popular: state.popular.movies,
     loading: state.popular.loading,
     genres: state.genres.genres,
+    error: state.popular.error,
     page: state.popular.popularInfo.page
   };
 };

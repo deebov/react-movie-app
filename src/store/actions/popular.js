@@ -36,8 +36,6 @@ export const fetchPopular = (page = 1) => async (dispatch, getState) => {
 
     dispatch(fetchPopularSuccess(data.data));
   } catch (error) {
-    console.log(error);
-
-    dispatch(fetchPopularFail());
+    dispatch(fetchPopularFail(error));
   }
 };
