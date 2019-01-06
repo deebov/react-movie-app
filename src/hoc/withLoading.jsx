@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Spinner from '../components/Spinner/Spinner';
 
@@ -11,4 +12,8 @@ const withLoading = Component => props => (
     {props.loading && <Spinner />}
   </div>
 );
+
+withLoading.propTypes = {
+  Component: PropTypes.element,
+};
 export default withLoading;

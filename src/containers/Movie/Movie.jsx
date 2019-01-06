@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { Movie as MoviePresentational } from '../../components/Movie/Movie';
 import { fetchMovie } from '../../store/actions';
@@ -25,16 +26,22 @@ class Movie extends Component {
   }
 }
 
+Movie.propTypes = {
+  movie: PropTypes.object,
+  loading: PropTypes.bool,
+  onFetchMovie: PropTypes.func,
+};
+
 const mapStateToProps = state => {
   return {
     movie: state.movie.movie,
-    loading: state.movie.loading
+    loading: state.movie.loading,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchMovie: id => dispatch(fetchMovie(id))
+    onFetchMovie: id => dispatch(fetchMovie(id)),
   };
 };
 

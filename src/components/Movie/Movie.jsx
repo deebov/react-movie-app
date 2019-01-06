@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import classes from './Movie.module.css';
 import { BASE_IMAGE_URL } from '../../constants/api';
@@ -8,7 +9,7 @@ export const Movie = ({ movie }) => {
     <div
       className={classes.Container}
       style={{
-        backgroundImage: `url(${BASE_IMAGE_URL}/w1280/${movie.backdrop_path})`
+        backgroundImage: `url(${BASE_IMAGE_URL}/w1280/${movie.backdrop_path})`,
       }}
     >
       <div className={classes.Poster}>
@@ -33,6 +34,10 @@ export const Movie = ({ movie }) => {
       </div>
     </div>
   );
+};
+
+Movie.propTypes = {
+  movie: PropTypes.object,
 };
 
 export default Movie;

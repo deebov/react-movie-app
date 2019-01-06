@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import classes from './withPaginated.module.css';
 
@@ -24,4 +25,9 @@ const withPaginated = Component => props => (
     </div>
   </div>
 );
+
+withPaginated.propTypes = {
+  Component: PropTypes.element,
+};
+
 export default withPaginated;

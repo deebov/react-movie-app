@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import MovieCards from '../../components/MovieCards/MovieCards';
 import * as actions from '../../store/actions';
@@ -8,7 +9,7 @@ import { addGenres } from '../../utils';
 
 class SimilarMovies extends Component {
   state = {
-    movies: null
+    movies: null,
   };
 
   static getDerivedStateFromProps(nextProps, state) {
@@ -17,7 +18,7 @@ class SimilarMovies extends Component {
       return null;
     } else if (nextProps.similar && nextProps.genres) {
       return {
-        movies: addGenres(nextProps.similar, nextProps.genres)
+        movies: addGenres(nextProps.similar, nextProps.genres),
       };
     }
 
@@ -41,17 +42,24 @@ class SimilarMovies extends Component {
   }
 }
 
+SimilarMovies.propTypes = {
+  similar: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  genres: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  loading: PropTypes.bool,
+  onFetchSimilar: PropTypes.func,
+};
+
 const mapStateToProps = state => {
   return {
     similar: state.similar.movies,
     genres: state.genres.genres,
-    loading: state.similar.loading
+    loading: state.similar.loading,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchSimilar: id => dispatch(actions.fetchSimilar(id))
+    onFetchSimilar: id => dispatch(actions.fetchSimilar(id)),
   };
 };
 

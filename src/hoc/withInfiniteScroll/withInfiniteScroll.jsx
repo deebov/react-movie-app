@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const withInfiniteScroll = Component =>
   class WithInfiniteScroll extends React.Component {
@@ -11,10 +12,11 @@ const withInfiniteScroll = Component =>
     }
 
     onScroll = () => {
+      const list = this.props.list || [];
       if (
         window.innerHeight + window.scrollY >=
           document.body.offsetHeight - 100 &&
-        this.props.list.length &&
+        list.length &&
         !this.props.loading &&
         !this.props.error
       ) {
@@ -30,5 +32,9 @@ const withInfiniteScroll = Component =>
       );
     }
   };
+
+withInfiniteScroll.propTypes = {
+  Component: PropTypes.element,
+};
 
 export default withInfiniteScroll;

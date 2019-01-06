@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
 
 import LandingPage from '../../pages/LandingPage';
 import { LANDING, MOVIE } from '../../constants/routes';
@@ -35,15 +36,20 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  movie: PropTypes.object,
+  onFetchGenres: PropTypes.func,
+};
+
 const mapStateToProps = state => {
   return {
-    movie: state.movie.movie
+    movie: state.movie.movie,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchGenres: () => dispatch(fetchGenres())
+    onFetchGenres: () => dispatch(fetchGenres()),
   };
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { search } from '../../store/actions';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -14,7 +15,6 @@ class Search extends Component {
     showOverlay: false,
     results: null,
     pathname: this.props.location.pathname,
-    _genres: false
   };
 
   onInputChangeHandler = event => {
@@ -29,7 +29,7 @@ class Search extends Component {
       return {
         query: '',
         showOverlay: false,
-        pathname: nextProps.location.pathname
+        pathname: nextProps.location.pathname,
       };
     }
 
@@ -44,7 +44,7 @@ class Search extends Component {
     let results = null;
     if (this.state.results && this.state.showOverlay) {
       document.body.style.overflow = 'hidden';
-      results = <MovieCards movies={this.state.results} />;
+      results = <MovieCards list={this.state.results} />;
     } else {
       document.body.style.overflow = 'auto';
     }
@@ -54,7 +54,7 @@ class Search extends Component {
         <SearchBar
           value={this.state.query}
           onChange={this.onInputChangeHandler}
-          loading={this.props.loading && this.state.showOverlay}
+          loading={!!this.props.loading && !!this.state.showOverlay}
         />
         {this.state.showOverlay ? <Overlay>{results}</Overlay> : null}
       </div>
@@ -62,17 +62,24 @@ class Search extends Component {
   }
 }
 
+Search.propTypes = {
+  results: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  genres: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  loading: PropTypes.bool,
+  onSearch: PropTypes.func,
+};
+
 const mapStateToProps = state => {
   return {
     results: state.search.results,
     genres: state.genres.genres,
-    loading: state.search.loading
+    loading: state.search.loading,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSearch: query => dispatch(search(query))
+    onSearch: query => dispatch(search(query)),
   };
 };
 
