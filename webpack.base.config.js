@@ -16,7 +16,7 @@ module.exports = env => {
   const { MODE } = env;
   return merge({
     devtool: 'cheap-module-eval-source-map',
-    entry: ['webpack/hot/only-dev-server', '@babel/polyfill', indexJS],
+    entry: ['@babel/polyfill', indexJS],
     output: {
       path: PATHS.PRODUCTION,
       filename: 'index.bundle.js',
