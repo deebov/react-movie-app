@@ -6,8 +6,10 @@ import Helmet from 'react-helmet';
 import LandingPage from '../../pages/LandingPage';
 import { LANDING, MOVIE } from '../../constants/routes';
 import { fetchGenres } from '../../store/actions';
-import MoviePage from '../../pages/MoviePage';
 import Search from '../../containers/Search/Search';
+import asyncComponent from '../../hoc/asyncComponent';
+
+const asyncMoviePage = asyncComponent(() => import('../../pages/MoviePage'));
 
 class App extends Component {
   componentDidMount() {
@@ -23,9 +25,8 @@ class App extends Component {
           <Route path={LANDING} exact component={LandingPage} />
           <Route
             path={MOVIE}
-            render={props => (
-              <MoviePage key={props.match.params.movieId} {...props} />
-            )}
+            component={asyncMoviePage}
+            key={this.props.location.pathname}
           />
           <Route render={() => <Redirect to={LANDING} />} />
         </Switch>
