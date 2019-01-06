@@ -26,10 +26,13 @@ class SimilarMovies extends Component {
   }
 
   render() {
+    // set the initial `movieCards` 
     let movieCards = null;
     if (this.props.loading) {
+      // show `Spinnner` if movies is being loaded
       movieCards = <Spinner />;
     } else if (this.state.movies) {
+      // show the `MovieCards` if `movies` is loaded
       movieCards = <MovieCards list={this.state.movies.slice(0, 6)} />;
     }
 

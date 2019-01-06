@@ -21,11 +21,13 @@ class Search extends Component {
     const query = event.target.value;
 
     this.setState({ query, showOverlay: query.length });
+    // Search for the query
     this.props.onSearch(query);
   };
 
   static getDerivedStateFromProps(nextProps, state) {
     if (nextProps.location.pathname !== state.pathname) {
+      // set state to the initial state if pathname was changed
       return {
         query: '',
         showOverlay: false,
@@ -41,8 +43,10 @@ class Search extends Component {
   }
 
   render() {
+    // set the initial `results`
     let results = null;
     if (this.state.results && this.state.showOverlay) {
+      // show MovieCards if `results` and `showOverlay`'s value is true
       document.body.style.overflow = 'hidden';
       results = <MovieCards list={this.state.results} />;
     } else {

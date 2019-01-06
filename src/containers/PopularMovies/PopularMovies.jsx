@@ -14,15 +14,16 @@ class PopularMovies extends Component {
   state = {
     movies: null,
     page: null,
-    _genres: false
   };
 
   componentDidMount() {
+    // Load first page of popular movies
     this.props.onFetchPopular(1);
   }
 
   static getDerivedStateFromProps(nextProps) {
     if (nextProps.popular && nextProps.genres) {
+      // return a new state if `popular` and `genres` are loaded
       return {
         movies: addGenres(nextProps.popular, nextProps.genres),
         page: nextProps.page
@@ -49,6 +50,10 @@ class PopularMovies extends Component {
   }
 }
 
+// create an advenced list
+// by default it loads items with infinte scroll
+// but if something goes wrong there it will notify you
+// and you can fetch it again manually
 const AdvancedMovieCards = compose(
   withPaginated,
   withInfiniteScroll,

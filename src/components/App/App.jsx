@@ -10,10 +10,12 @@ import { fetchGenres } from '../../store/actions';
 import Search from '../../containers/Search/Search';
 import asyncComponent from '../../hoc/asyncComponent';
 
+// Lazy MoviePage component
 const asyncMoviePage = asyncComponent(() => import('../../pages/MoviePage'));
 
 class App extends Component {
   componentDidMount() {
+    // Load genres
     this.props.onFetchGenres();
   }
 

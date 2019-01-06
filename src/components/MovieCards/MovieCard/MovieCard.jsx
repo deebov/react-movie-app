@@ -7,7 +7,7 @@ import { truncStr } from '../../../utils';
 
 const MovieCard = props => {
   const { title, genres, poster_path, vote_average } = props.item;
-  
+  // Make a string of genres
   const genresString = genres.map(g => g.name).join(' / ');
 
   return (

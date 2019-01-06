@@ -8,18 +8,22 @@ import Spinner from '../../components/Spinner/Spinner';
 
 class Movie extends Component {
   componentDidMount() {
+    // Load movie's detail
     this.props.onFetchMovie(this.props.id);
   }
 
   render() {
+    // set initial movie
     let movie = null;
     if (this.props.loading) {
+      // show spinner if movie is being loaded
       movie = (
         <div style={{ paddingTop: '60px' }}>
           <Spinner />
         </div>
       );
     } else if (this.props.movie) {
+      // show Movie component if movie is loaded
       movie = <MoviePresentational movie={this.props.movie} />;
     }
     return <div>{movie}</div>;
