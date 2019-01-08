@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack",
     "start": "webpack-dev-server --mode=development --config webpack.dev.config.js --env.MODE=development",
-    "build": "webpack --mode=production --config webpack.prod.config.js --env.MODE=production"
+    "build": "webpack --mode=production --config webpack.prod.config.js --env.MODE=production",
+    "serve": "serve -s dist/"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

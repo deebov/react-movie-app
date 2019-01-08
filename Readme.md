@@ -58,10 +58,16 @@ or
 $ npm i -g serve
 ```
 
-Then go the production folder ( `dist`) and run this command:
+Then run this command:
 
 ```sh
-$ serve
+$ yarn run serve
+```
+
+or
+
+```sh
+$ npm run serve
 ```
 
 ## Features
