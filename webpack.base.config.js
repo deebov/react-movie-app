@@ -15,7 +15,7 @@ const indexJS = path.resolve(__dirname, PATHS.DEVELOPMENT, 'index.js');
 module.exports = env => {
   const { MODE } = env;
   return merge({
-    devtool: 'cheap-module-eval-source-map',
+    devtool: MODE === 'development' ? 'cheap-module-eval-source-map' : false,
     entry: ['@babel/polyfill', indexJS],
     output: {
       path: PATHS.PRODUCTION,
