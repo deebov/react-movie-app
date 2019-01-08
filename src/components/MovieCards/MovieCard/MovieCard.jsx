@@ -13,7 +13,7 @@ const MovieCard = props => {
   return (
     <div
       className={classes.Container}
-      style={{ backgroundImage: `url(${BASE_IMAGE_URL}/w185${poster_path})` }}
+      style={{ backgroundImage: poster_path && `url(${BASE_IMAGE_URL}/w185${poster_path})` }}
     >
       <div className={classes.VoteContainer}>
         <span className={classes.Vote}>{vote_average}</span>
