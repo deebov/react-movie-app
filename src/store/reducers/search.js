@@ -18,9 +18,10 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, {
         results: results,
         requestInfo: {
-          page: page === total_pages ? null : page,
+          page: page,
           total_pages,
           total_results,
+          isLastPage: page >= total_pages ? true : false,
         },
         loading: false,
       });

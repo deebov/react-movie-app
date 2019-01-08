@@ -76,7 +76,7 @@ class Search extends Component {
           list={this.state.results}
           loading={this.props.loading}
           onPaginated={this.onPaginated}
-          page={this.props.page}
+          page={!this.props.isLastPage}
           withPaginated
         />
       );
@@ -106,6 +106,8 @@ Search.propTypes = {
   results: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   genres: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   loading: PropTypes.bool,
+  isLastPage: PropTypes.bool,
+  page: PropTypes.number,
   onSearch: PropTypes.func,
 };
 
@@ -114,6 +116,7 @@ const mapStateToProps = state => {
     results: state.search.results,
     genres: state.genres.genres,
     loading: state.search.loading,
+    isLastPage: state.search.requestInfo.isLastPage,
     page: state.search.requestInfo.page,
   };
 };
