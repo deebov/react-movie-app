@@ -20,7 +20,7 @@ const withInfiniteScroll = Component =>
         !this.props.loading &&
         !this.props.error
       ) {
-        this.props.onPaginatedSearch();
+        this.props.onPaginated();
       }
     };
 

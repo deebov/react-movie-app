@@ -16,11 +16,20 @@ const withPaginated = Component => props => (
           <button
             className={classes.Button}
             type="button"
-            onClick={props.onPaginatedSearch}
+            onClick={props.onPaginated}
           >
             Try again
           </button>
         </div>
+      )}
+      {props.page && !props.loading && !props.error && props.withPaginated && (
+        <button
+          className={classes.Button}
+          type="button"
+          onClick={props.onPaginated}
+        >
+          More
+        </button>
       )}
     </div>
   </div>

@@ -4,36 +4,45 @@ import { SEARCH, BASE_URL, API_KEY } from '../../constants/api';
 
 export const searchStart = () => {
   return {
-    type: actionTypes.SEARCH_START
+    type: actionTypes.SEARCH_START,
   };
 };
 
 export const searchFail = () => {
   return {
-    type: actionTypes.SEARCH_FAIL
+    type: actionTypes.SEARCH_FAIL,
   };
 };
 
-export const searchSuccess = results => {
+export const searchSuccess = data => {
   return {
     type: actionTypes.SEARCH_SUCCESS,
-    results
+    data,
   };
 };
 
+
+// This function makes search requests.
+// if the previous request is not finished when current request 
+// is called this function calcells the previous one
 function makeRequestCreator() {
   let call;
-  return query => dispatch => {
+  return (query, page) => dispatch => {
     if (call) {
       call.cancel();
     }
-    dispatch(searchStart())
+    dispatch(searchStart());
     call = axios.CancelToken.source();
-    return axios(`${BASE_URL}${SEARCH}?query=${query}&api_key=${API_KEY}`, {
-      cancelToken: call.token
+    return axios(`${BASE_URL}${SEARCH}`, {
+      cancelToken: call.token,
+      params: {
+        query,
+        api_key: API_KEY,
+        page,
+      },
     })
       .then(response => {
-        dispatch(searchSuccess(response.data.results));
+        dispatch(searchSuccess(response.data));
       })
       .catch(thrown => {
         // dispatch(searchFail());
@@ -47,4 +56,3 @@ function makeRequestCreator() {
 }
 
 export const search = makeRequestCreator();
-

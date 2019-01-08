@@ -26,7 +26,7 @@ const MovieCards = ({ list }) => {
 };
 
 MovieCards.propTypes = {
-  movies: PropTypes.array
+  list: PropTypes.array
 };
 
 export default MovieCards;

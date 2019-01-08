@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { compose } from 'recompose';
 
 import { search } from '../../store/actions';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import MovieCards from '../../components/MovieCards/MovieCards';
 import Overlay from '../../components/Overlay/Overlay';
 import { addGenres } from '../../utils';
+import withLoading from '../../hoc/withLoading';
+import withPaginated from '../../hoc/withPaginated/withPaginated';
 
 class Search extends Component {
   state = {
@@ -15,6 +18,7 @@ class Search extends Component {
     showOverlay: false,
     results: null,
     pathname: this.props.location.pathname,
+    page: 1,
   };
 
   onInputChangeHandler = event => {
@@ -22,7 +26,7 @@ class Search extends Component {
 
     this.setState({ query, showOverlay: query.length });
     // Search for the query
-    this.props.onSearch(query);
+    this.props.onSearch(query, 1);
   };
 
   static getDerivedStateFromProps(nextProps, state) {
@@ -32,15 +36,34 @@ class Search extends Component {
         query: '',
         showOverlay: false,
         pathname: nextProps.location.pathname,
+        page: 1,
       };
     }
 
-    if (nextProps.results && nextProps.genres && !state._genres) {
-      return { results: addGenres(nextProps.results, nextProps.genres) };
+    if (nextProps.results && nextProps.genres) {
+      // If query wasn't changed
+      if (nextProps.page > state.page) {
+        return {
+          results: addGenres(
+            [...state.results, ...nextProps.results],
+            nextProps.genres
+          ),
+          page: nextProps.page,
+        };
+        // If query was changed
+      } else if (nextProps.page === 1) {
+        return {
+          results: addGenres(nextProps.results, nextProps.genres),
+          page: nextProps.page,
+        };
+      }
     }
 
     return null;
   }
+
+  onPaginated = () =>
+    this.props.onSearch(this.state.query, this.state.page + 1);
 
   render() {
     // set the initial `results`
@@ -48,7 +71,15 @@ class Search extends Component {
     if (this.state.results && this.state.showOverlay) {
       // show MovieCards if `results` and `showOverlay`'s value is true
       document.body.style.overflow = 'hidden';
-      results = <MovieCards list={this.state.results} />;
+      results = (
+        <MovieCardsWithInfiniteScroll
+          list={this.state.results}
+          loading={this.props.loading}
+          onPaginated={this.onPaginated}
+          page={this.props.page}
+          withPaginated
+        />
+      );
     } else {
       document.body.style.overflow = 'auto';
     }
@@ -66,6 +97,11 @@ class Search extends Component {
   }
 }
 
+const MovieCardsWithInfiniteScroll = compose(
+  withPaginated,
+  withLoading
+)(MovieCards);
+
 Search.propTypes = {
   results: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   genres: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
@@ -78,12 +114,13 @@ const mapStateToProps = state => {
     results: state.search.results,
     genres: state.genres.genres,
     loading: state.search.loading,
+    page: state.search.requestInfo.page,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSearch: query => dispatch(search(query)),
+    onSearch: (query, page) => dispatch(search(query, page)),
   };
 };
 

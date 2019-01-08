@@ -26,14 +26,14 @@ class PopularMovies extends Component {
       // return a new state if `popular` and `genres` are loaded
       return {
         movies: addGenres(nextProps.popular, nextProps.genres),
-        page: nextProps.page
+        page: nextProps.page,
       };
     }
 
     return null;
   }
 
-  onPaginatedSearch = () => this.props.onFetchPopular(this.state.page + 1);
+  onPaginated = () => this.props.onFetchPopular(this.state.page + 1);
 
   render() {
     return (
@@ -43,7 +43,7 @@ class PopularMovies extends Component {
           page={this.state.page}
           loading={this.props.loading}
           error={this.props.error}
-          onPaginatedSearch={this.onPaginatedSearch}
+          onPaginated={this.onPaginated}
         />
       </div>
     );
@@ -64,7 +64,7 @@ PopularMovies.propTypes = {
   popular: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   loading: PropTypes.bool,
   genres: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  onFetchPopular: PropTypes.func
+  onFetchPopular: PropTypes.func,
 };
 
 const mapStateToProps = state => {
@@ -73,7 +73,7 @@ const mapStateToProps = state => {
     loading: state.popular.loading,
     genres: state.genres.genres,
     error: state.popular.error,
-    page: state.popular.popularInfo.page
+    page: state.popular.popularInfo.page,
   };
 };
 

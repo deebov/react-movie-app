@@ -5,7 +5,7 @@ const initialState = {
   movies: null,
   popularInfo: {},
   loading: false,
-  error: false
+  error: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,15 +16,15 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, { loading: false, error: action.error });
     case actionTypes.POPULAR_SUCCESS:
       const { results, page, total_results, total_pages } = action.data;
-      const oldMovies = state.movies ? state.movies : [];
+      const oldMovies = state.movies || [];
       return updateObject(state, {
         movies: [...oldMovies, ...results],
         popularInfo: {
           page: page === total_pages ? null : page,
           total_pages,
-          total_results
+          total_results,
         },
-        loading: false
+        loading: false,
       });
     default:
       return state;
