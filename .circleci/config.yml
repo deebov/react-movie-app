@@ -13,9 +13,9 @@ jobs:
       - checkout # check out the code in the project directory
       - run: echo "bee boo bee" # run the `echo` command
 
-  workflows:
-    version: 2
-    build_and_test:
-      jobs:
-        - build
-        - test
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
