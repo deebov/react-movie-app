@@ -99,5 +99,3 @@ $ npm run serve
 ### Contacts
 
 [Github](https://github.com/deebov)
-
-Email: deebov@yandex.com
